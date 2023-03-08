@@ -28,8 +28,8 @@ public class Change extends Card {
     }
     @Override
     public void UseCard() {
-        Turn.pre = Turn.now;
-        Turn.now = this;
+        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
+        Turn.GetInstance().SetNow(this);
         Calc.SetBuff(Calc.GetCount() % 10 * 10 + Calc.GetCount() / 10);
         Calc.SetCount(true);
         State.SetState(state);

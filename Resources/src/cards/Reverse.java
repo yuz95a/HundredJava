@@ -28,9 +28,9 @@ public class Reverse extends Card {
     }
     @Override
     public void UseCard() {
-        Turn.pre = Turn.now;
-        Turn.now = this;
-        Turn.SetDirection();
+        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
+        Turn.GetInstance().SetNow(this);
+        Turn.GetInstance().SetDirection();
         State.SetState(state);
     }
 }

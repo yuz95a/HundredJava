@@ -30,8 +30,8 @@ public class Mod extends Card {
     }
     @Override
     public void UseCard() {
-        Turn.pre = Turn.now;
-        Turn.now = this;
+        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
+        Turn.GetInstance().SetNow(this);
         State.SetState(state);
     }
 }

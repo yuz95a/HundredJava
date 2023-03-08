@@ -28,9 +28,9 @@ public class Number extends Card {
     }
     @Override
     public void UseCard() {
-        Turn.pre = Turn.now;
-        Turn.now = this;
-        Turn.pre.SkillEffect(this);
+        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
+        Turn.GetInstance().SetNow(this);
+        Turn.GetInstance().GetPre().SkillEffect(this);
         Calc.SetCount(false);
         State.SetState(state);
     }
