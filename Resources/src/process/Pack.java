@@ -30,11 +30,11 @@ public class Pack {
         }
         pack = tmp;
     }
-    public Card GetFirstCard() {
-        return pack.get(0);
+    public Card GetCard(int index) {
+        return pack.get(index);
     }
-    public void RemoveCard() {
-        pack.remove(0);
+    public void RemoveCard(int index) {
+        pack.remove(index);
     }
     public void AddCard(Card c) {
         if (size == -1) {

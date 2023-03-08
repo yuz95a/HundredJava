@@ -1,7 +1,6 @@
 package process;
 
 import cards.Card;
-import cards.Number;
 
 public class Player {
     //region ForPlayerFiled
@@ -23,27 +22,41 @@ public class Player {
         enable = false;
 
         hand = new Pack();
-        main = Turn.main;
-        pale = Turn.pale;
-
+        main = Turn.GetInstance().GetMain();
+        pale = Turn.GetInstance().GetPale();
     }
     public void SetOrder(int o) {
         order = o > 0 ? o : 0;
     }
+    public int GetLife() {
+        return life;
+    }
     public void FromMain() {
-        Card c = main.GetFirstCard();
-        main.RemoveCard();
+        Card c = main.GetCard(0);
+        main.RemoveCard(0);
         hand.AddCard(c);
     }
-    public void ToPale(Card c) {
-        Card card = c;
-        hand.RemoveCard(); //=> which card will be removed? Maybe not just index 0.
-        hand.AddCard(c);
-    }
-    public void UseCard(int index) {
-        ToPale(new Number(1, "EEFD"));
+    public void ToPale(int index) {
+        hand.GetCard(index).UseCard();
+        Card c = hand.GetCard(index);
+        hand.RemoveCard(index);
+        pale.AddCard(c);
     }
     public void Pass() {
-        //this.disable, next.ennable
+        enable = false;
+    }
+    public void Process(int o) {
+        if (order == o && life > 0) {
+            enable = true;
+        }
+    }
+    public void LifeLoss() {
+        if (--life == 0) {
+            enable = false;
+            order = 0;
+        }
+    }
+    public String Action() {
+        return name + "'s turn";
     }
 }
