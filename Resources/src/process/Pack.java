@@ -30,9 +30,6 @@ public class Pack {
         }
         pack = tmp;
     }
-    public Card GetFirstCard(int index) {
-        return pack.get(index);
-    }
     public Card GetFirstCard() {
         return pack.get(0);
     }
@@ -40,6 +37,14 @@ public class Pack {
         pack.remove(0);
     }
     public void AddCard(Card c) {
+        if (size == -1) {
+            System.out.println("size is not set.\n");
+            return;
+        }
+        if (size < pack.size() + 1) {
+            System.out.println("size is not enough.\n");
+            return;
+        }
         pack.add(c);
     }
 }

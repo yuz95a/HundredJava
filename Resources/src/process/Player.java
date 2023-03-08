@@ -1,6 +1,7 @@
 package process;
 
 import cards.Card;
+import cards.Number;
 
 public class Player {
     //region ForPlayerFiled
@@ -34,13 +35,13 @@ public class Player {
         main.RemoveCard();
         hand.AddCard(c);
     }
-    public void ToPale() {
-        Card c = main.GetFirstCard();
-        main.RemoveCard();
+    public void ToPale(Card c) {
+        Card card = c;
+        hand.RemoveCard(); //=> which card will be removed? Maybe not just index 0.
         hand.AddCard(c);
     }
-    public void Use(int index) {
-
+    public void UseCard(int index) {
+        ToPale(new Number(1, "EEFD"));
     }
     public void Pass() {
         //this.disable, next.ennable
