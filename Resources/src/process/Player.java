@@ -31,6 +31,9 @@ public class Player {
     public int GetLife() {
         return life;
     }
+    public boolean IsEnable() {
+        return enable;
+    }
     public void FromMain() {
         Card c = main.GetCard(0);
         main.RemoveCard(0);
