@@ -29,6 +29,7 @@ public class Pack {
             pack.remove(j);
         }
         pack = tmp;
+        UI.GetInstance().TextShuffle();
     }
     public Card GetCard(int index) {
         return pack.get(index);

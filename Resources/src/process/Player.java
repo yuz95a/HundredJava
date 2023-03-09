@@ -18,10 +18,12 @@ public class Player {
 
     public Player(String n) {
         name = n;
+        order = -1;
         life = 3;
         enable = false;
 
         hand = new Pack();
+        hand.SetSize(3);
         main = Turn.GetInstance().GetMain();
         pale = Turn.GetInstance().GetPale();
     }
@@ -45,6 +47,14 @@ public class Player {
         hand.RemoveCard(index);
         pale.AddCard(c);
     }
+    public void Ready(int o) {
+        if (order == o) {
+            enable = true;
+        }
+        else {
+            enable = false;
+        }
+    }
     public void Pass() {
         enable = false;
     }
@@ -61,5 +71,8 @@ public class Player {
     }
     public String Action() {
         return name + "'s turn";
+    }
+    public void JoinGame() {
+        Turn.GetInstance().AddPlayer(this);
     }
 }
