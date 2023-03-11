@@ -10,6 +10,7 @@ public class Turn {
     private static Turn instance;
     private int turn;
     private int processOrder;
+    private int playerOrder;
     private final Pack main;
     private final Pack pale;
     private Card pre;
@@ -19,9 +20,11 @@ public class Turn {
     public Turn() {
         turn = 1;
         processOrder = 1;
+        playerOrder = 1;
         main = new Pack();
         main.SetSize(108);
         pale = new Pack();
+        pale.SetSize(108);
         pre = new cards.Number(1, "pre");
         now = new cards.Number(1, "now");
         direction = 1;
@@ -38,7 +41,7 @@ public class Turn {
     public int GetTurn() {
         return turn;
     }
-    public int GetOrder() {
+    public int GetProcessOrder() {
         return processOrder;
     }
     public Pack GetMain() {
@@ -60,7 +63,7 @@ public class Turn {
         turn++;
     }
     //param is Player.order
-    public void SetOrder(int o) {
+    public void SetProcessOrder(int o) {
         processOrder = o + 1;
         processOrder = processOrder > players.size() ? 1 : processOrder;
     }
@@ -74,8 +77,11 @@ public class Turn {
         direction = direction > 0 ? -1 : 1;
     }
     public void AddPlayer(Player player) {
+        player.SetOrder(playerOrder);
         players.add(player);
+        playerOrder++;
     }
+    //region InitalMainCard
     public void SetMainCard() {
         //region NumberCard
         for (int i = 1; i < 10; i++) {
@@ -149,18 +155,32 @@ public class Turn {
         
         return generatedString;
     }
-    public void SetOrderAllPlayers() {
-        for (int i = 0; i < players.size(); i++) {
-            players.get(i).SetOrder(i + 1);
-        }
-        UI.GetInstance().TextSetOrderAllPlayers(players.size());
-    }
+    //endregion
     public void GameStart() {
-        for (Player player : players) {
-            player.Ready(1);
-            if (player.IsEnable()) {
-
-            }
+        //playerOrder is set player count + 1
+        playerOrder--;
+        //Ready turn : all players get 2cards.
+        for (int i = 0; i < playerOrder; i++) {
+            players.get(i).DrawCard();
+            players.get(i).DrawCard();
         }
+        SetFirstCard();
+        Calc.SetBuff(now.GetNumber());
+        Calc.SetCount(false);
+    }
+    public void SetFirstCard() {
+        Card c = main.GetCard(0);
+        main.RemoveCard(0);
+        pale.AddCard(c);
+        now = c;
+    }
+    //After ready turn
+    public void GameUpdate(int processOrder) {
+        //Player p;
+        //p = players.get(i);
+        //p.DrawCard();
+        //p.UseCard(???); ??? -> input each player's choose
+        //p.??? -> SetProcessOrder
+        //turn++;
     }
 }
