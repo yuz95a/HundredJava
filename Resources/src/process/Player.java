@@ -36,41 +36,24 @@ public class Player {
     public boolean IsEnable() {
         return enable;
     }
-    public void FromMain() {
+    //Card: main -> player's hand
+    public void DrawCard() {
         Card c = main.GetCard(0);
         main.RemoveCard(0);
         hand.AddCard(c);
     }
-    public void ToPale(int index) {
-        hand.GetCard(index).UseCard();
+    //Card: player's hand -> pale
+    public void UseCard(int index) {
+        hand.GetCard(index).Used();
         Card c = hand.GetCard(index);
         hand.RemoveCard(index);
         pale.AddCard(c);
     }
-    public void Ready(int o) {
-        if (order == o) {
-            enable = true;
-        }
-        else {
-            enable = false;
-        }
-    }
-    public void Pass() {
-        enable = false;
-    }
-    public void Process(int o) {
-        if (order == o && life > 0) {
-            enable = true;
-        }
-    }
     public void LifeLoss() {
         if (--life == 0) {
             enable = false;
-            order = 0;
+            order = -1;
         }
-    }
-    public String Action() {
-        return name + "'s turn";
     }
     public void JoinGame() {
         Turn.GetInstance().AddPlayer(this);
