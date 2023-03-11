@@ -1,7 +1,10 @@
 import process.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("GameStart");
         Player p1 = new Player("First");
         Player p2 = new Player("Second");
@@ -15,7 +18,8 @@ public class Main {
         p4.JoinGame();
         p5.JoinGame();
         p6.JoinGame();
-        Turn.GetInstance().SetOrderAllPlayers();
+        Turn.GetInstance().GameStart();
+        System.out.println(Turn.GetInstance().GetNow().GetNumber());
         System.out.println("GameEnd");
     }
 }
