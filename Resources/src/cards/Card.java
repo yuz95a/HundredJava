@@ -11,5 +11,5 @@ public abstract class Card {
     public abstract int GetNumber();
     public abstract boolean GetCalced();
     public abstract void SkillEffect(Card pre);
-    public abstract void UseCard();
+    public abstract void Used();
 }

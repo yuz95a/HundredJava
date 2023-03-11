@@ -29,7 +29,7 @@ public class Times extends Card {
         }
     }
     @Override
-    public void UseCard() {
+    public void Used() {
         Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
         Turn.GetInstance().SetNow(this);
         State.SetState(state);
