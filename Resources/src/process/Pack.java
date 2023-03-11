@@ -37,13 +37,14 @@ public class Pack {
     public void RemoveCard(int index) {
         pack.remove(index);
     }
+    
     public void AddCard(Card c) {
         if (size == -1) {
-            System.out.println("size is not set.\n");
+            System.out.println("size is not set.");
             return;
         }
         if (size < pack.size() + 1) {
-            System.out.println("size is not enough.\n");
+            System.out.println("size is not enough.");
             return;
         }
         pack.add(c);
