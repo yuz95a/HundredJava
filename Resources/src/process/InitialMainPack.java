@@ -6,9 +6,11 @@ import cards.*;
 import cards.Number;
 
 public class InitialMainPack {
+    private Turn turn;
     private Pack main;
 
-    public InitialMainPack(Pack m) {
+    public InitialMainPack(Turn tn, Pack m) {
+        turn = tn;
         main = m;
     }
     public void SetMainCard() {
@@ -34,14 +36,14 @@ public class InitialMainPack {
     }
     public void SetMainNumberCard(int n, int count) {
         for (int i = 0; i < count; i++) {
-            Number card = new Number(n, GetRandomSeed());
+            Number card = new Number(turn, n, GetRandomSeed());
             main.AddCard(card);
         }
     }
     public void SetMainSpecialCard() {
         for (int i = 0; i < 4; i++) {
-            Change cc = new Change(GetRandomSeed());
-            Reverse cr = new Reverse(GetRandomSeed());
+            Change cc = new Change(turn, GetRandomSeed());
+            Reverse cr = new Reverse(turn, GetRandomSeed());
             main.AddCard(cc);
             main.AddCard(cr);
         }
@@ -49,21 +51,21 @@ public class InitialMainPack {
             if (i == 0 || i == 2 || i == 3) {
                 for (int j = 0; j < 2; j++) {
                     String s = Integer.toString(i) + " times";
-                    Times ct = new Times(GetRandomSeed(), s, i);
+                    Times ct = new Times(turn, GetRandomSeed(), s, i);
                     main.AddCard(ct);
                 }
             }
             else if (i == 1 || i == 4) {
                 for (int j = 0; j < 2; j++) {
                     String s = "plus " + Integer.toString(i);
-                    Plus cp = new Plus(GetRandomSeed(), s, i);
+                    Plus cp = new Plus(turn, GetRandomSeed(), s, i);
                     main.AddCard(cp);
                 }
             }
             else {
                 for (int j = 0; j < 2; j++) {
                     String s = "remainder divided by " + Integer.toString(i);
-                    Mod cm = new Mod(GetRandomSeed(), s, i);
+                    Mod cm = new Mod(turn, GetRandomSeed(), s, i);
                     main.AddCard(cm);
                 }
             }
