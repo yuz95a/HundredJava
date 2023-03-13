@@ -5,7 +5,8 @@ import process.State;
 import process.Turn;
 
 public class Number extends Card {
-    public Number(int n, String seed) {
+    public Number(Turn tn, int n, String seed) {
+        turn = tn;
         number = n;
         id = seed;
         skill = State.Skill.NORMAL;
