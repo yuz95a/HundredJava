@@ -5,7 +5,8 @@ import process.State;
 import process.Turn;
 
 public class Reverse extends Card {
-    public Reverse(String seed) {
+    public Reverse(Turn tn, String seed) {
+        turn = tn;
         number = 0;
         id = seed;
         skill = State.Skill.REVERSE;
@@ -28,9 +29,9 @@ public class Reverse extends Card {
     }
     @Override
     public void Used() {
-        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
-        Turn.GetInstance().SetNow(this);
-        Turn.GetInstance().SetDirection();
+        turn.SetPre(turn.GetNow());
+        turn.SetNow(this);
+        turn.CallSetDirection();
         State.SetState(state);
     }
 }

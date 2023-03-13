@@ -6,7 +6,8 @@ import process.Turn;
 
 public class Times extends Card {
     private int times;
-    public Times(String seed, String st, int t) {
+    public Times(Turn tn, String seed, String st, int t) {
+        turn = tn;
         number = 0;
         id = seed;
         skill = State.Skill.TIMES;
@@ -30,8 +31,8 @@ public class Times extends Card {
     }
     @Override
     public void Used() {
-        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
-        Turn.GetInstance().SetNow(this);
+        turn.SetPre(turn.GetNow());
+        turn.SetNow(this);
         State.SetState(state);
     }
 }

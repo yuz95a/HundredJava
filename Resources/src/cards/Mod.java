@@ -6,7 +6,8 @@ import process.Turn;
 
 public class Mod extends Card {
     private int divisor;
-    public Mod(String seed, String st, int d) {
+    public Mod(Turn tn, String seed, String st, int d) {
+        turn = tn;
         number = 0;
         id = seed;
         skill = State.Skill.MOD;
@@ -30,8 +31,8 @@ public class Mod extends Card {
     }
     @Override
     public void Used() {
-        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
-        Turn.GetInstance().SetNow(this);
+        turn.SetPre(turn.GetNow());
+        turn.SetNow(this);
         State.SetState(state);
     }
 }

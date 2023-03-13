@@ -6,7 +6,8 @@ import process.Turn;
 
 public class Plus extends Card {
     private int plus;
-    public Plus(String seed, String st, int p) {
+    public Plus(Turn tn, String seed, String st, int p) {
+        turn = tn;
         number = 0;
         id = seed;
         skill = State.Skill.PLUS;
@@ -30,8 +31,8 @@ public class Plus extends Card {
     }
     @Override
     public void Used() {
-        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
-        Turn.GetInstance().SetNow(this);
+        turn.SetPre(turn.GetNow());
+        turn.SetNow(this);
         State.SetState(state);
     }
 }

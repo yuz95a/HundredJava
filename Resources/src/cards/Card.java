@@ -1,8 +1,10 @@
 package cards;
 
 import process.State;
+import process.Turn;
 
 public abstract class Card {
+    protected Turn turn;
     protected int number;
     protected String id;
     protected State.Skill skill;

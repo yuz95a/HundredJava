@@ -5,7 +5,8 @@ import process.State;
 import process.Turn;
 
 public class Change extends Card {
-    public Change(String seed) {
+    public Change(Turn tn, String seed) {
+        turn = tn;
         number = 0;
         id = seed;
         skill = State.Skill.CHANGE;
@@ -28,8 +29,8 @@ public class Change extends Card {
     }
     @Override
     public void Used() {
-        Turn.GetInstance().SetPre(Turn.GetInstance().GetNow());
-        Turn.GetInstance().SetNow(this);
+        turn.SetPre(turn.GetNow());
+        turn.SetNow(this);
         Calc.SetBuff(Calc.GetCount() % 10 * 10 + Calc.GetCount() / 10);
         Calc.SetCount(true);
         State.SetState(state);
