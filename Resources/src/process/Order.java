@@ -29,6 +29,7 @@ public class Order {
         processOrder = processOrder < 1 ? room.GetPlayerCount() : processOrder;
     }
     public void SetDirection() {
-        forward = forward ? false : true;
+        forward = !forward;
+        System.out.println("Direction is reversed.");// -> TODO UI class
     }
 }
