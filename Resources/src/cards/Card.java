@@ -11,6 +11,8 @@ public abstract class Card {
     protected String state;
     protected boolean calced;
     public abstract int GetNumber();
+    public abstract String GetState();
+    public abstract String GetSkill();
     public abstract boolean GetCalced();
     public abstract void SkillEffect(Card pre);
     public abstract void Used();

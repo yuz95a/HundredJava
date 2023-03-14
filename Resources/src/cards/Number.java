@@ -1,6 +1,5 @@
 package cards;
 
-import process.Calc;
 import process.State;
 import process.Turn;
 
@@ -18,13 +17,21 @@ public class Number extends Card {
         return number;
     }
     @Override
+    public String GetState() {
+        return state;
+    }
+    @Override
+    public String GetSkill() {
+        return skill.toString();
+    }
+    @Override
     public boolean GetCalced() {
         return calced;
     }
     @Override
     public void SkillEffect(Card now) {
         if(now.GetCalced()) {
-            Calc.SetBuff(now.GetNumber());
+            turn.GetRoom().GetCalc().SetBuff(now.GetNumber());
         }
     }
     @Override
@@ -32,7 +39,7 @@ public class Number extends Card {
         turn.SetPre(turn.GetNow());
         turn.SetNow(this);
         turn.GetPre().SkillEffect(this);
-        Calc.SetCount(false);
+        turn.GetRoom().GetCalc().SetCount(false);
         State.SetState(state);
     }
 }
