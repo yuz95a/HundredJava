@@ -1,15 +1,21 @@
 package process;
 
 public class Calc {
-    private static int count = 0;
-    private static int buff = 0;
-    public static void SetCount(boolean change) {
+    private int count;
+    private int buff;
+
+    public Calc() {
+        count = 0;
+        buff = 0;
+    }
+
+    public void SetCount(boolean change) {
         count = change ? buff : count + buff;
     }
-    public static int GetCount() {
+    public int GetCount() {
         return count;
     }
-    public static void SetBuff(int num) {
+    public void SetBuff(int num) {
         buff = num;
     }
 }
