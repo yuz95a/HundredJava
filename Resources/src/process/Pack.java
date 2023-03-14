@@ -29,10 +29,18 @@ public class Pack {
             pack.remove(j);
         }
         pack = tmp;
-        UI.GetInstance().TextShuffle();
+        System.out.println("Shuffle");// -> TODO UI class
     }
     public Card GetCard(int index) {
-        return pack.get(index);
+        if(index < 0 || index > pack.size() - 1) {
+            return null;
+        }
+        else if(pack.size() < 1) {
+            return null;
+        }
+        else {
+            return pack.get(index);
+        }
     }
     public void RemoveCard(int index) {
         pack.remove(index);
@@ -40,11 +48,11 @@ public class Pack {
     
     public void AddCard(Card c) {
         if (size == -1) {
-            System.out.println("size is not set.");
+            System.out.println("size is not set.");// -> TODO UI class
             return;
         }
         if (size < pack.size() + 1) {
-            System.out.println("size is not enough.");
+            System.out.println("size is not enough.");// -> TODO UI class
             return;
         }
         pack.add(c);
