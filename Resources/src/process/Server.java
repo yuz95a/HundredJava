@@ -14,6 +14,13 @@ public class Server {
         }
         return instance;
     }
+
+    public int GetRoomCount() {
+        return rooms.size();
+    }
+    public Room GetRoom(int index) {
+        return rooms.get(index);
+    }
     public Room CreateNewRoom(String pw) {
         Room room = new Room();
         room.SetPassword(pw);
